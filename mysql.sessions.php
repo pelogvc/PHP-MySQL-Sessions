@@ -72,13 +72,13 @@ class Session {
 		// Attempt execution
 		// If successful
 		if($this->db->execute()){
-		// Save returned row
-		$row = $this->db->single();
-		// Return the data
-		return $row['data'];
-		}else{
-		// Return an empty string
-		return '';
+			// Save returned row
+			$row = $this->db->single();
+			// Return the data
+			if (is_null($row['data'])) {
+				return '';
+			}
+			return $row['data'];
 		}
 	}
 	public function _write($id, $data){
